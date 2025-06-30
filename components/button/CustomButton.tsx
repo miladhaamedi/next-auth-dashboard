@@ -4,18 +4,18 @@ import styles from "./CustomButton.module.scss";
 
 interface CustomButtonProps {
   children: React.ReactNode;
-  onClick: () => void;
-  type: "primary" | "secondary";
+  onClick?: () => void;
+  variant: "primary" | "secondary";
   disabled?: boolean;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
   children,
   onClick,
-  type,
+  variant,
   disabled = false,
 }) => {
-  const className = type === "primary" ? styles.primary : styles.secondary;
+  const className = variant === "primary" ? styles.primary : styles.secondary;
 
   return (
     <button
