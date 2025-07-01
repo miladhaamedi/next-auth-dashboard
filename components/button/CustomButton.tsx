@@ -15,13 +15,20 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   variant,
   disabled = false,
 }) => {
-  const className = variant === "primary" ? styles.primary : styles.secondary;
+  let finalClassName = styles.button;
+
+  if (variant === "primary") {
+    finalClassName += ` ${styles.buttonPrimary}`;
+  } else if (variant === "secondary") {
+    finalClassName += ` ${styles.buttonSecondary}`;
+  }
+
+  if (disabled) {
+    finalClassName += `${styles.disabled}`;
+  }
 
   return (
-    <button
-      onClick={onClick}
-      disabled={disabled}
-      className={`${className} ${disabled ? styles.disabled : ""}`}>
+    <button onClick={onClick} disabled={disabled} className={finalClassName}>
       {children}
     </button>
   );

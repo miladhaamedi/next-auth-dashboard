@@ -1,22 +1,77 @@
-.primary {
-  background-color: #007bff;
-  color: #ffffff;
+@import "@/styles/variables";
+
+.button {
+  padding: 0.75rem 1.5rem;
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
+  border-radius: $border-radius;
+  font-weight: 500;
   cursor: pointer;
+  outline: none;
+  transition: background-color $transition-speed ease,
+    box-shadow $transition-speed ease, transform $transition-speed ease;
+
+  box-shadow: 0 2px 4px $shadow-color;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+  }
+  &:active {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+  }
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.3), 0 2px 4px $shadow-color;
+  }
 }
 
-.secondary {
-  background-color: #6c757d;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
+.buttonPrimary {
+  background-color: $primary-color;
+  color: $primary-text-color;
+
+  box-shadow: 0 2px 4px rgba($primary-color, 0.2);
+
+  &:hover {
+    background-color: darken($primary-color, 5%);
+    box-shadow: 0 4px 8px rgba($primary-color, 0.3);
+  }
+
+  &:active {
+    background-color: darken($primary-color, 10%);
+    box-shadow: 0 1px 2px rgba($primary-color, 0.1);
+  }
+}
+
+.buttonSecondary {
+  background-color: transparent;
+  color: $secondary-color;
+  border: 1px solid $secondary-color;
+  box-shadow: none;
+
+  &:hover {
+    background-color: lighten($secondary-color, 40%);
+    box-shadow: 0 2px 4px rgba($secondary-color, 0.1);
+  }
+
+  &:active {
+    background-color: lighten($secondary-color, 35%);
+    box-shadow: none;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($secondary-color, 0.3),
+      0 2px 4px rgba(0, 0, 0, 0.05);
+  }
 }
 
 .disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+  background-color: #e0e0e0 !important;
+  color: #a0a0a0 !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  transform: none !important;
+  opacity: 0.7;
 }

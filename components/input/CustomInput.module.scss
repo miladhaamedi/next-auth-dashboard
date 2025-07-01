@@ -1,0 +1,65 @@
+@import "@/styles/variables";
+
+.formGroup {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: $label-color;
+  transition: color $transition-speed ease;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  font-size: 1rem;
+  color: $text-color;
+  background-color: $background-color;
+  outline: none;
+  box-shadow: 0 2px 4px $shadow-color;
+  transition: border-color $transition-speed ease,
+    box-shadow $transition-speed ease;
+
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 4px 8px $focus-shadow-color;
+  }
+
+  &::placeholder {
+    color: #999;
+    opacity: 1; /* Firefox */
+  }
+
+  // Webkit browsers (Chrome, Safari)
+  &::-webkit-input-placeholder {
+    color: #999;
+  }
+
+  // Microsoft Edge
+  &::-ms-input-placeholder {
+    color: #999;
+  }
+}
+
+.inputError {
+  border-color: $error-color !important; // override کردن border-color هنگام خطا
+  box-shadow: 0 2px 4px rgba($error-color, 0.2) !important; // سایه خطادار
+}
+
+.error {
+  color: $error-color;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  display: block; // اطمینان از نمایش در خط جدید
+}
+
+// اختیاری: استایل لیبل هنگام فوکوس روی input
+.input:focus + .label {
+  color: $primary-color; // تغییر رنگ لیبل به رنگ اصلی هنگام فوکوس
+}
