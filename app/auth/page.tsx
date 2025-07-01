@@ -27,13 +27,7 @@ export default function LoginPage() {
     },
   });
 
-  const [formMessage, setFormMessage] = useState("");
-  const [messageType, setMessageType] = useState<"success" | "error" | "">("");
-
-  const onSubmit = async (data: LoginFormInputs) => {
-    setFormMessage("");
-    setMessageType("");
-
+  const onSubmit = async () => {
     try {
       const resData = await getUserData();
 
@@ -42,80 +36,69 @@ export default function LoginPage() {
         router.push("/dashboard");
       }
 
-      setFormMessage("Data submitted successfully! (This is just a demo)");
-      setMessageType("success");
       reset();
     } catch (error) {
       console.error("Submission error:", error);
-      setFormMessage("Error submitting data. Please try again.");
-      setMessageType("error");
     }
   };
 
   return (
     <div className={styles.loginContainer}>
-      <h2 className={styles.title}>Login to Your Account</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => (
-            <CustomInput
-              label="Email"
-              type="email"
-              id="email"
-              placeholder="Enter your email"
-              {...field}
-              error={errors.email?.message}
-            />
-          )}
-        />
+      <div className={styles.loginCard}>
+        <h2 className={styles.title}>Login to Your Account</h2>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+          <Controller
+            name="email"
+            control={control}
+            render={({ field }) => (
+              <CustomInput
+                label="Email"
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                {...field}
+                error={errors.email?.message}
+              />
+            )}
+          />
 
-        {/* Password field */}
-        <Controller
-          name="password"
-          control={control}
-          render={({ field }) => (
-            <CustomInput
-              label="Password"
-              type="password"
-              id="password"
-              placeholder="Enter your password"
-              {...field}
-              error={errors.password?.message}
-            />
-          )}
-        />
+          {/* Password field */}
+          <Controller
+            name="password"
+            control={control}
+            render={({ field }) => (
+              <CustomInput
+                label="Password"
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                {...field}
+                error={errors.password?.message}
+              />
+            )}
+          />
 
-        {/* Phone number field */}
-        <Controller
-          name="phone"
-          control={control}
-          render={({ field }) => (
-            <CustomInput
-              label="Phone Number"
-              type="tel"
-              id="phone"
-              placeholder="e.g., 09123456789"
-              {...field}
-              error={errors.phone?.message}
-            />
-          )}
-        />
+          {/* Phone number field */}
+          <Controller
+            name="phone"
+            control={control}
+            render={({ field }) => (
+              <CustomInput
+                label="Phone Number"
+                type="tel"
+                id="phone"
+                placeholder="e.g., 09123456789"
+                {...field}
+                error={errors.phone?.message}
+              />
+            )}
+          />
 
-        <CustomButton variant="primary" disabled={isSubmitting}>
-          {isSubmitting ? "Submitting..." : "Login"}
-        </CustomButton>
-
-        {formMessage && (
-          <p
-            className={`${styles.message} ${
-              messageType === "success" ? styles.success : styles.errorMessage
-            }`}>
-            {formMessage}
-          </p>
-        )}
-      </form>
+          <CustomButton variant="primary" disabled={isSubmitting}>
+            {isSubmitting ? "Submitting..." : "Login"}
+          </CustomButton>
+        </form>
+      </div>
     </div>
   );
 }

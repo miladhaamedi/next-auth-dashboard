@@ -1,11 +1,12 @@
 "use client";
 
+import LoadingSpinner from "@/components/spinner/LoadingSpinner";
 import useAuth from "@/hooks/useAuth";
 export default function DashboardPage() {
   const { isAuthenticated } = useAuth();
 
   if (!isAuthenticated) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   return (
